@@ -1,0 +1,124 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <h1>Game Management System</h1>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                             <form #myForm="ngForm">
+                                <div class="form-group">
+                                    <label for="gamename">
+                                        Game Id
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="Gamename" 
+                                           #empId="ngModel" ngModel
+                                           
+                                           required
+                                            pattern="[a-zA-Z]+" />
+                                </div>
+                                <div *ngIf="empId.touched">
+                                  <div *ngIf="empId.errors?.['required']">
+                                    <b style="color: red;">Game name is required.</b>
+                                  </div>
+                                  <div *nfIf="empId.error?.['pattern']">
+                                    <font color="red"><b>Invalid Game name</b></font>
+
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="jerseyno">
+                                        Jersey No
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="Jerseyno" 
+                                           #empName="ngModel" ngModel
+                                           required
+                                            pattern="[0-9]+" />
+                                </div>
+                                <div *ngIf="empId.touched">
+                                  <div *ngIf="empId.errors?.['required']">
+                                    <b style="color: red;">Jersey no is required.</b>
+                                  </div>
+                                  <div *nfIf="empId.error?.['pattern']">
+                                    <font color="red"><b>Invalid Jersey no</b></font>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="playername">
+                                        Player name
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="Playername" 
+                                           #empSalary="ngModel" ngModel
+                                           required 
+                                           pattern="[a-zA-Z]+" />
+                                </div>
+                                <div *ngIf="empId.touched">
+                                  <div *ngIf="empId.errors?.['required']">
+                                    <b style="color: red;">Player name required.</b>
+                                  </div>
+                                  <div *nfIf="empId.error?.['pattern']">
+                                    <font color="red"><b>Invalid Player name</b></font>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="playerrole">
+                                      Player Role
+                                  </label>
+                                  <input  type="text" 
+                                         class="form-control" 
+                                         name="Playerrole" 
+                                         #empSalary="ngModel" ngModel
+                                         required 
+                                         pattern="[a-zA-Z]+" />
+                              </div>
+                              <div *ngIf="empId.touched">
+                                <div *ngIf="empId.errors?.['required']">
+                                  <b style="color: red;">Player Role required.</b>
+                                </div>
+                                <div *nfIf="empId.error?.['pattern']">
+                                  <font color="red"><b>Invalid Player Role</b></font>
+                                </div>
+                              </div>                              
+                                <button class="btn btn-success" (click)="insertEmployee(myForm.value)">
+                                    Insert 
+                                </button>
+                            &nbsp;&nbsp;
+                                <button class="btn btn-primary" (click)="updateEmployee(myForm.value)" >
+                                    Update 
+                                </button>&nbsp;&nbsp;
+                                <button class="btn btn-danger"  (click)="deleteEmployee(myForm.value)" >
+                                    Delete 
+                                </button>&nbsp;&nbsp;
+                                <button class="btn btn-warning" (click)="findEmployee(myForm.value)" >
+                                    Find 
+                                </button>
+                                &nbsp;&nbsp;
+                                <button class="btn btn-info" (click)="findAllEmployee()">
+                                    Find All
+                                </button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+<br>
+<h3>{{result}}</h3>
+<div style="width: 100%;" *ngIf="flag">
+  <table width="80%" align="center" class="table table-borderd">
+   <tr><th>Game Id</th><th>Jersey no</th><th>Player name</th><th>Player role</th></tr> 
+    <tr *ngFor="let emp of employeeArr">
+        <td> {{emp.id}} </td><td> {{emp.Jersey}} </td><td> {{emp.Player}} </td><td>{{emp.Role}}</td>
+    </tr>
+ </table>
+ </div>
+    </body>
+</html>
+
